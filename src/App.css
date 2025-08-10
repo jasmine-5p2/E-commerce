@@ -1,0 +1,841 @@
+/* Force flat dropdown items: remove all boxy styles */
+.user-dropdown-menu a,
+.user-dropdown-menu button {
+  background: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+  margin: 0 !important;
+  outline: none !important;
+}
+nav {
+  z-index: 10;
+  position: relative;
+}
+/* Fix header dropdown stacking above navigation */
+.headerWrapper, .header {
+position: relative;
+z-index: 10010;
+overflow: visible;
+}
+/* User Dropdown in Header */
+.part3 {
+  position: relative;
+}
+.part3 .user-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  border-radius: 12px;
+  min-width: 200px;
+  max-width: 240px;
+  width: auto;
+  z-index: 10001;
+  overflow: visible;
+  padding: 6px 0;
+}
+/* Reset + Fonts */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.user-dropdown-menu a, .user-dropdown-menu button {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  font-size: 16px;
+  color: #222;
+  background: none;
+  border: none;
+  text-align: left;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.2px;
+}
+.user-dropdown-menu a:hover, .user-dropdown-menu button:hover {
+  background: #f3f4f7;
+  color: #8e00a3;
+}
+.cursor{cursor: pointer;}
+.text-sml{font-size: 14px;}
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@100..900&display=swap');
+
+/* ===========================
+   Global Body Styling
+=========================== */
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  background: #f8f9fc; /* soft, elegant light background */
+  color: #222222;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+   
+  
+}
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+ 
+}
+
+
+
+
+
+/* ===========================
+   Top Strip / Announcement Bar
+=========================== */
+.bg-purple {
+  background: linear-gradient(90deg, #8e00a3, #b450c5);
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 99;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+/* Optional: glowing effect on hover */
+.bg-purple:hover {
+  background: linear-gradient(90deg, #a000bf, #c676df);
+  box-shadow: 0 4px 12px rgba(142, 0, 163, 0.25);
+}
+.headerWrapper{border-bottom: 1px solid rgba(0, 0, 0, 0.1);padding-bottom: 10px;}
+.headerWrapper .top-strip {
+  padding: 9px 0;
+}
+
+.headerWrapper .top-strip p {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Header */
+.headerWrapper .header {
+  display: flex;
+  width: 100%;
+  padding: 7px 0;
+  flex-wrap: wrap;
+  overflow: visible;
+}
+
+/* Logo Wrapper */
+.logoWrapper {
+  display:flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+/* Logo Image */
+.logoWrapper img {
+  width: 50%;
+  max-width: 180px;
+  transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.15));
+  border-radius: 16px;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, #ffffff 0%, #f7f7f7 100%);
+  padding: 4px;
+  animation: shimmer 5s infinite linear alternate;
+}
+
+/* Hover Effect - Glow + Slight Rotation */
+.logoWrapper img:hover {
+  transform: scale(1.07) rotate(-2deg);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25));
+  border-color: #8e00a3;
+  box-shadow: 0 0 12px rgba(142, 0, 163, 0.4);
+}
+
+/* Shimmer Keyframe */
+@keyframes shimmer {
+  0% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  100% {
+    opacity: 0.95;
+    filter: brightness(1.05);
+  }
+}
+
+/* Responsive Logo for Tablets & Mobile */
+@media (max-width: 768px) {
+  .logoWrapper img {
+    width: 60%;
+    max-width: 160px;
+  }
+}
+
+@media (max-width: 576px) {
+  .logoWrapper img {
+    width: 70%;
+    max-width: 130px;
+  }
+}
+
+
+/* Part 2 - Flex container for dropdown and search */
+.headerWrapper .header .part2 {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Gap between dropdown and search bar */
+}
+
+/* ==========================
+   Country Dropdown (MUI Button)
+============================= */
+.countryDrop {
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 10px 16px !important;
+  width: 160px;
+  height: 60px;
+  background: linear-gradient(135deg, #ffffff, #f7f9fc) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px;
+  text-transform: none !important; /* Prevent MUI from capitalizing */
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+/* Hover animation */
+.countryDrop:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Left info section inside the button */
+.countryDrop .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.1;
+}
+
+/* Label - "Your Location" */
+.countryDrop .label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #8e00a3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+  opacity: 0.9;
+}
+
+/* Country name - "India" */
+.countryDrop .name {
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.85);
+  text-transform: capitalize;
+}
+
+/* Dropdown icon */
+.countryDrop .ml-auto {
+  display: flex;
+  align-items: center;
+}
+
+.countryDrop .ml-auto svg {
+  font-size: 16px;
+  color: #8e00a3;
+  transition: transform 0.3s ease;
+  opacity: 0.7;
+}
+
+/* Rotate on hover (optional) */
+.countryDrop:hover .ml-auto svg {
+  transform: rotate(180deg);
+}
+
+
+
+/* ==========================
+   Header Search Styles
+   ========================== */
+.headerWrapper .header .headerSearch {
+  display: flex;
+  align-items: center;
+  width: 60%;
+  height: 60px;
+  background: #f3f4f7;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  gap: 10px;
+}
+
+.headerWrapper .header .headerSearch input {
+  flex: 1;
+  background: transparent !important;
+  outline: none !important;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.8);
+  height: 40px;
+  border: none !important;
+  padding: 0 20px !important;
+}
+
+.headerWrapper .header .headerSearch button {
+  min-width: 40px !important;
+  height: 40px !important;
+  width: 40px !important;
+  border-radius: 50% !important;
+  background: white;
+  border: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.headerWrapper .header .headerSearch button svg {
+  font-size: 20px;
+}
+.headerWrapper .header .part3 button {
+  min-width: 50px !important;
+  height: 50px !important;
+  width: 50px !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, #ffffff, #f3f4f7);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover effect */
+.headerWrapper .header .part3 button:hover {
+  background: linear-gradient(135deg, #e3e6ea, #ffffff);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  color: #8e00a3;
+}
+
+/* Optional icon animation */
+.headerWrapper .header .part3 button svg {
+  font-size: 22px;
+  transition: transform 0.3s ease;
+}
+
+.headerWrapper .header .part3 button:hover svg {
+  transform: scale(1.1);
+}
+/* Cart Icon */
+.cartBtn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #222;
+  padding: 8px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Cart Badge Styling */
+.cartBtn .cart-count {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background-color: #e01e37;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 4px 8px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Hover effect on Cart Icon */
+.cartBtn:hover {
+  color: #8e00a3; /* Change to your desired hover color */
+}
+
+/* Header Search */
+.headerSearch input {
+  width: 250px;
+  padding: 8px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+}
+
+.headerSearch Button {
+  background-color: #8e00a3;
+  border-radius: 50%;
+  color: white;
+  padding: 12px;
+  border: none;
+  margin-left: 10px;
+}
+
+.headerSearch Button:hover {
+  background-color: #7b0095;
+}
+
+/* Ensure spacing between the country dropdown and search bar */
+.part2 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Part3 User Profile and Notification */
+.part3 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+  overflow: visible;
+}
+
+nav .allCartTab {
+  background: linear-gradient(135deg,black, #1aa8e3);
+  padding: 10px 13px !important;
+  border-radius: 40px !important;
+  box-shadow: 0 4px 12px rgba(43, 190, 249, 0.35);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+nav .allCartTab:hover {
+  background: linear-gradient(135deg, black, #009fd9);
+  box-shadow: 0 6px 18px rgba(0, 173, 238, 0.45);
+  transform: translateY(-2px);
+}
+
+/* Text inside the tab */
+nav .allCartTab .text {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* Icon or any other children */
+nav .allCartTab * {
+  color: #ffffff !important;
+}
+nav .allCartTab .icon1 svg{font-size: 20px !important;}
+nav .allCartTab  .icon2 svg{font-size: 15px !important;}
+nav .navPart1 .catWrapper {
+  position: relative;
+}
+
+/* Sidebar hidden by default */
+nav .navPart1 .catWrapper .sidebarNav {
+  width: 100%;
+  max-height: 0;
+  background: #fff;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* When open, show the sidebar */
+nav .navPart1 .catWrapper .sidebarNav.open {
+  max-height: 400px;  /* or height you want */
+  opacity: 1;
+  visibility: visible;
+}
+
+nav .navPart1 .catWrapper .sidebarNav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav .navPart1 .catWrapper .sidebarNav ul li {
+  width: 100%;
+  list-style: none;
+  padding: 5px 15px;
+}
+
+/* Target MUI Button inside li */
+nav .navPart1 .catWrapper .sidebarNav ul li button {
+  color: #222;
+  width: 100%;
+  justify-content: flex-start;
+  text-transform: capitalize !important;
+  background: none;
+  border: none;
+  padding: 8px 0;
+  text-align: left;
+  box-shadow: none;
+}
+
+/* On hover */
+nav .navPart1 .catWrapper .sidebarNav ul li button:hover {
+  background: transparent !important;
+  color: #007BFF; /* example hover color */
+}
+/*  submenu for men fashio etc*/
+nav .navPart1 .catWrapper .sidebarNav ul li {
+  position: relative; /* Needed for absolute submenu positioning */
+}
+
+
+
+nav .navPart1 .catWrapper .sidebarNav ul li .submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: none;
+  min-width: 160px;
+  z-index: 1000;
+}
+
+nav .navPart1 .catWrapper .sidebarNav ul li:hover .submenu {
+  display: block;
+}
+
+nav .navPart1 .catWrapper .sidebarNav ul li .submenu li {
+  padding: 10px 15px;
+}
+
+nav .navPart1 .catWrapper .sidebarNav ul li .submenu li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+}
+
+nav .navPart1 .catWrapper .sidebarNav ul li .submenu li:hover {
+  background-color: #f5f5f5;
+}
+
+
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+
+/* Ensure the container aligns content horizontally */
+.navPart2 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Make sure list is horizontal */
+.navPart2 .list {
+  display: flex;
+  flex-direction: row;
+  gap: 25px; /* spacing between items */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Individual List Items */
+.navPart2 .list-inline-items {
+  display: flex;
+  align-items: center;
+}
+
+/* Navigation Link Buttons */
+.navPart2 .list-inline-items a button {
+  display: flex;
+  align-items: center;
+  gap: 9px; /* Space between icon and text */
+  text-decoration: none;
+  background:whitesmoke;
+  border: none;
+  outline: none;
+  color: #2c2c2c;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 4px 4px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  letter-spacing: 0.1px;
+  cursor: pointer;
+}
+
+/* Hover Effect */
+.navPart2 .list-inline-items a button:hover {
+  background: linear-gradient(135deg, #8e00a3, #2bbef9);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional Active State */
+.navPart2 .list-inline-items a button.active {
+  background: #8e00a3;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(142, 0, 163, 0.3);
+}
+
+
+/* Icon beside text */
+.navPart2 .list-inline-items .nav-icon {
+  margin-right: 6px;
+  font-size: 16px;
+  color: #2bbef9;
+  transition: color 0.3s ease;
+}
+
+/* Hover styles */
+.navPart2 .list-inline-items a:hover {
+  background: #f2f6ff;
+  color: #8e00a3;
+}
+
+.navPart2 .list-inline-items a:hover .nav-icon {
+  color: #8e00a3;
+}
+
+/* Optional active link style */
+.navPart2 .list-inline-items a.active {
+  background: #8e00a3;
+  color: #fff;
+}
+
+.navPart2 .list-inline-items a.active .nav-icon {
+  color: #fff;
+}
+
+
+/* ==========================
+   Submenu Dropdown Styling
+========================== */
+.nav-item {
+  position: relative;
+}
+
+/* Submenu container (hidden by default) */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%; /* Position below the parent item */
+  left: 0;
+  background: white;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 10px 0;
+  min-width: 180px;
+  z-index: 1000;
+}
+
+/* Submenu links */
+.submenu a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #222;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.submenu a:hover {
+  background: #f3f4f7;
+  color: #8e00a3;
+}
+
+/* Show submenu on hover */
+.nav-item:hover .submenu {
+  display: block;
+}
+
+/* Optional: arrow indicator on parent */
+.nav-item.has-submenu > a::after {
+  content: " ▼";
+  font-size: 10px;
+  margin-left: 6px;
+  color: #8e00a3;
+}
+
+/* Dialog padding */
+.LocationModel .MuiPaper-elevation {
+  padding: 32px;
+  border-radius: 16px;
+  background-color: #ffffff;
+}
+
+/* Country list wrapper */
+.LocationModel .countryList {
+  max-width: 400px;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fafafa;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.03);
+}
+
+/* List items reset */
+.LocationModel .countryList li {
+  list-style: none;
+  width: 100%;
+}
+
+/* Button styling inside list */
+.LocationModel .countryList li button{
+  width: 100%;
+  text-align: left;
+  padding: 12px 20px;
+  text-transform: capitalize !important;
+  color: #333 !important;
+  font-size: 15px;
+  background-color: transparent;
+  transition: background 0.2s ease;
+  border-radius: 0;
+  justify-content: flex-start !important;
+}
+.LocationModel .countryList li button:hover{background: #f1f1f1 !important;}
+.LocationModel .countryList li button:active{background: #ccc !important;}
+/* Hover effect */
+.LocationModel .countryList li button:hover {
+  background-color: #e3f2fd;
+  color: #1976d2 !important;
+}
+
+/* Optional: Custom scrollbar (WebKit-based browsers) */
+.LocationModel .countryList::-webkit-scrollbar {
+  width: 8px;
+}
+
+.LocationModel .countryList::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0;
+  border-radius: 4px;
+}
+
+.LocationModel .countryList::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
+}
+.LocationModel .close_{position: absolute;top: 20px;right: 20px;color: #222222 !important;max-width: 40px !important;width: 40px !important;height: 40px !important;border-radius: 50% !important;}
+.LocationModel .close_ svg{font-size: 22px;}
+.slider-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.slider-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+
+.homeBannerSection{
+  cursor: pointer;
+}
+.homeProducts{padding: 25px 0px;width: 100%;}
+.homeProducts .banner{width: 100;border-radius: 7px;overflow: hidden;}
+.productRow .hd{font-size: 25px;font-weight: 700;}
+.viewallbtn {
+padding: 5px 15px !important;
+background: #fff;
+border: 1px solid rgba(0, 0, 0, 0.1) !important;
+border-radius: 30px !important;
+
+}
+
+.viewallbtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(240, 101, 149, 0.4);
+}
+
+.productItem{width: 100%;height: auto ;border: 1px solid rgba(0,0,0,0.1);}
+.item.productItem {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  transition: transform 0.3s;
+}
+.item.productItem:hover {
+  transform: scale(1.02);
+}
+.sparkle::after {
+  content: "✨";
+  position: absolute;
+  animation: sparkle-animation 0.6s ease-out forwards;
+  font-size: 1.5rem;
+  top: -10px;
+  right: -10px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+@keyframes sparkle-animation {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2) translateY(-20px);
+  }
+}
+.brandSwiper .swiper-slide {
+  transition: transform 0.3s;
+}
+.brandSwiper .swiper-slide-active {
+  transform: scale(1.05);
+}
