@@ -9,7 +9,7 @@ const products = [
     id: 41, // ⚠️ CHANGED from 1
     name: "Oxford Shoes",
     price: 69.99,
-    image: "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=400&q=80", // ⚠️ CHANGED: 'img' to 'image' + better oxford image
+    image: "https://tse2.mm.bing.net/th/id/OIP.Nu5K7Jo9WN4PsJxAc1c9ygHaHa?pid=Api&P=0&h=180", // ⚠️ CHANGED: 'img' to 'image' + better oxford image
     rating: 4.8,
     category: "Men's Footwear", // ⚠️ ADDED
     description: "Classic oxford shoes for formal occasions."
@@ -18,7 +18,7 @@ const products = [
     id: 42, // ⚠️ CHANGED from 2
     name: "Derby Shoes",
     price: 64.99,
-    image: "https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&fit=crop&w=400&q=80", // ⚠️ CHANGED: 'img' to 'image' + better derby image
+    image: "https://tse2.mm.bing.net/th/id/OIP.Nu5K7Jo9WN4PsJxAc1c9ygHaHa?pid=Api&P=0&h=180", // ⚠️ CHANGED: 'img' to 'image' + better derby image
     rating: 4.6,
     category: "Men's Footwear", // ⚠️ ADDED
     description: "Elegant derby shoes for office and events."
@@ -27,7 +27,7 @@ const products = [
     id: 43, // ⚠️ CHANGED from 3
     name: "Monk Strap Shoes",
     price: 74.99,
-    image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=400&q=80", // ⚠️ CHANGED: 'img' to 'image' + better monk strap image
+    image: "https://tse2.mm.bing.net/th/id/OIP.Nu5K7Jo9WN4PsJxAc1c9ygHaHa?pid=Api&P=0&h=180", // ⚠️ CHANGED: 'img' to 'image' + better monk strap image
     rating: 4.7,
     category: "Men's Footwear", // ⚠️ ADDED
     description: "Stylish monk strap shoes for a modern look."
