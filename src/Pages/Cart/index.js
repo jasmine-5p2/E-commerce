@@ -1,10 +1,17 @@
 import React from "react";
 import { useCart } from "../../context/CartContext";
+import { useNavigate } from 'react-router-dom'; // Add this import
 
 const Cart = () => {
   const { cartItems, updateQuantity, removeFromCart, getCartTotal, getTotalItems } = useCart();
+  const navigate = useNavigate(); // Add this hook
 
   const getItemTotal = (price, quantity) => (price * quantity).toFixed(2);
+
+  // Handle checkout navigation
+  const handleCheckout = () => {
+    navigate('/checkout');
+  };
 
   if (cartItems.length === 0) {
     return (
@@ -126,7 +133,11 @@ const Cart = () => {
               <span>${getCartTotal().toFixed(2)}</span>
             </div>
             <div style={{marginTop: '1rem'}}>
-              <button className="btn btn-primary btn-block" style={{width: '100%', marginBottom: '0.5rem'}}>
+              <button 
+                className="btn btn-primary btn-block" 
+                style={{width: '100%', marginBottom: '0.5rem'}}
+                onClick={handleCheckout} // Add onClick handler
+              >
                 Proceed to Checkout
               </button>
               <button className="btn btn-outline-secondary btn-block" style={{width: '100%'}}>

@@ -54,7 +54,7 @@ overflow: visible;
   border-radius: 0 !important;
   margin: 0 !important;
   box-shadow: none !important;
-  transition: background 0.2s, color 0.2s;
+  transition:0.2s, color 0.2s;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -219,14 +219,15 @@ body {
   border-radius: 12px !important;
   padding: 10px 16px !important;
   width: 160px;
-  height: 60px;
+  min-height: 60px;
+  height: auto;
   background: linear-gradient(135deg, #ffffff, #f7f9fc) !important;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
   gap: 10px;
-  text-transform: none !important; /* Prevent MUI from capitalizing */
+  text-transform: none !important;
   position: relative;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
@@ -243,7 +244,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  line-height: 1.1;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 0;
+  line-height: 1.2;
+  gap: 2px;
 }
 
 /* Label - "Your Location" */
@@ -253,8 +258,10 @@ body {
   color: #8e00a3;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 2px;
+  margin: 0;
+  padding: 0;
   opacity: 0.9;
+  white-space: nowrap;
 }
 
 /* Country name - "India" */
@@ -263,12 +270,21 @@ body {
   font-weight: 700;
   color: rgba(0, 0, 0, 0.85);
   text-transform: capitalize;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Dropdown icon */
 .countryDrop .ml-auto {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
 }
 
 .countryDrop .ml-auto svg {
@@ -276,13 +292,30 @@ body {
   color: #8e00a3;
   transition: transform 0.3s ease;
   opacity: 0.7;
+  display: block;
 }
 
-/* Rotate on hover (optional) */
-.countryDrop:hover .ml-auto svg {
+/* Rotate on open (add this class via JS when dropdown is open) */
+.countryDrop.open .ml-auto svg {
   transform: rotate(180deg);
 }
 
+/* Optional: Smooth rotation on hover */
+.countryDrop:hover .ml-auto svg {
+  opacity: 1;
+}
+
+/* Prevent MUI button default styles from interfering */
+.countryDrop.MuiButton-root {
+  text-align: left !important;
+}
+
+.countryDrop .MuiButton-label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 
 /* ==========================
@@ -774,6 +807,20 @@ nav .navPart1 .catWrapper .sidebarNav ul li .submenu li:hover {
   margin: 0 auto;
   padding: 20px 0;
 }
+/* Modal/Dialog container - MUST be highest */
+.LocationModel,
+.LocationModel .MuiDialog-root,
+.LocationModel .MuiModal-root,
+.MuiDialog-root,
+.MuiModal-root {
+  z-index: 10020 !important;
+}
+
+.LocationModel .MuiDialog-paper,
+.LocationModel .MuiPaper-root,
+.MuiDialog-paper {
+  z-index: 10021 !important;
+}
 
 .slider-image {
   width: 100%;
@@ -838,4 +885,713 @@ border-radius: 30px !important;
 }
 .brandSwiper .swiper-slide-active {
   transform: scale(1.05);
+}
+
+
+/* ===========================
+   RESPONSIVE MEDIA QUERIES
+=========================== */
+
+/* Large Tablets and Small Desktops (992px - 1199px) */
+@media (max-width: 1199px) {
+  .container {
+    max-width: 960px;
+  }
+  
+  .headerWrapper .header .headerSearch {
+    width: 50%;
+  }
+  
+  .navPart2 .list {
+    gap: 15px;
+  }
+  
+  .navPart2 .list-inline-items a button {
+    font-size: 18px;
+    padding: 3px 3px;
+  }
+}
+
+/* Tablets (768px - 991px) */
+@media (max-width: 991px) {
+  .container {
+    max-width: 720px;
+  }
+  
+  .bg-purple {
+    font-size: 11px;
+    padding: 8px 5px;
+  }
+  
+  .headerWrapper .header {
+    gap: 10px;
+  }
+  
+  .logoWrapper img {
+    width: 60%;
+    max-width: 150px;
+  }
+  
+  .countryDrop {
+    width: 140px;
+    min-height: 50px;
+    padding: 8px 12px !important;
+  }
+  
+  .countryDrop .label {
+    font-size: 10px;
+  }
+  
+  .countryDrop .name {
+    font-size: 13px;
+  }
+  
+  .headerWrapper .header .headerSearch {
+    width: 100%;
+    height: 50px;
+    order: 3;
+    margin-top: 10px;
+  }
+  
+  .headerWrapper .header .part2 {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  .headerWrapper .header .part3 button {
+    min-width: 45px !important;
+    height: 45px !important;
+    width: 45px !important;
+  }
+  
+  .headerWrapper .header .part3 button svg {
+    font-size: 20px;
+  }
+  
+  nav .allCartTab {
+    padding: 8px 10px !important;
+  }
+  
+  nav .allCartTab .text {
+    font-size: 13px;
+  }
+  
+  .navPart2 .list {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .navPart2 .list-inline-items a button {
+    font-size: 16px;
+    padding: 3px 6px;
+    gap: 6px;
+  }
+  
+  .slider-image {
+    height: 300px;
+  }
+  
+  .productRow .hd {
+    font-size: 22px;
+  }
+  
+  .part3 {
+    gap: 10px;
+  }
+}
+
+/* Mobile Landscape & Small Tablets (576px - 767px) */
+@media (max-width: 767px) {
+  .container {
+    max-width: 540px;
+    padding: 0 10px;
+  }
+  
+  body {
+    font-size: 13px;
+  }
+  
+  .bg-purple {
+    font-size: 10px;
+    padding: 7px 5px;
+  }
+  
+  .headerWrapper {
+    padding-bottom: 8px;
+  }
+  
+  .headerWrapper .header {
+    padding: 5px 0;
+  }
+  
+  .logoWrapper {
+    flex: 0 0 40%;
+  }
+  
+  .logoWrapper img {
+    width: 80%;
+    max-width: 120px;
+  }
+  
+  .headerWrapper .header .part2 {
+    flex: 1;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+  
+  .countryDrop {
+    width: 120px;
+    min-height: 45px;
+    padding: 6px 10px !important;
+  }
+  
+  .countryDrop .label {
+    font-size: 9px;
+  }
+  
+  .countryDrop .name {
+    font-size: 12px;
+  }
+  
+  .headerWrapper .header .headerSearch {
+    width: 100%;
+    height: 45px;
+    padding: 8px;
+    order: 4;
+  }
+  
+  .headerWrapper .header .headerSearch input {
+    font-size: 13px;
+    padding: 0 10px !important;
+  }
+  
+  .headerWrapper .header .headerSearch button {
+    min-width: 35px !important;
+    height: 35px !important;
+    width: 35px !important;
+  }
+  
+  .headerWrapper .header .headerSearch button svg {
+    font-size: 18px;
+  }
+  
+  .headerWrapper .header .part3 {
+    flex: 0 0 auto;
+  }
+  
+  .headerWrapper .header .part3 button {
+    min-width: 40px !important;
+    height: 40px !important;
+    width: 40px !important;
+  }
+  
+  .headerWrapper .header .part3 button svg {
+    font-size: 18px;
+  }
+  
+  .part3 {
+    gap: 8px;
+  }
+  
+  nav .allCartTab {
+    padding: 6px 8px !important;
+    border-radius: 30px !important;
+  }
+  
+  nav .allCartTab .text {
+    font-size: 12px;
+  }
+  
+  nav .allCartTab .icon1 svg {
+    font-size: 18px !important;
+  }
+  
+  nav .allCartTab .icon2 svg {
+    font-size: 13px !important;
+  }
+  
+  .navPart2 {
+    justify-content: center;
+  }
+  
+  .navPart2 .list {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .navPart2 .list-inline-items a button {
+    font-size: 14px;
+    padding: 2px 5px;
+    gap: 5px;
+  }
+  
+  .navPart2 .list-inline-items .nav-icon {
+    font-size: 14px;
+  }
+  
+  nav .navPart1 .catWrapper .sidebarNav ul li {
+    padding: 4px 12px;
+  }
+  
+  .slider-container {
+    padding: 15px 0;
+  }
+  
+  .slider-image {
+    height: 250px;
+  }
+  
+  .homeProducts {
+    padding: 20px 0;
+  }
+  
+  .productRow .hd {
+    font-size: 20px;
+  }
+  
+  .viewallbtn {
+    padding: 4px 12px !important;
+    font-size: 12px;
+  }
+  
+  .user-dropdown-menu {
+    min-width: 180px !important;
+  }
+  
+  .user-dropdown-menu a,
+  .user-dropdown-menu button {
+    padding: 7px 14px;
+    font-size: 14px;
+  }
+  
+  .LocationModel .MuiPaper-elevation {
+    padding: 24px;
+  }
+  
+  .LocationModel .countryList {
+    max-width: 100%;
+  }
+}
+
+/* Mobile Portrait (320px - 575px) */
+@media (max-width: 575px) {
+  .container {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  
+  body {
+    font-size: 12px;
+  }
+  
+  .bg-purple {
+    font-size: 9px;
+    padding: 6px 5px;
+    letter-spacing: 0.3px;
+  }
+  
+  .headerWrapper {
+    padding-bottom: 5px;
+  }
+  
+  .headerWrapper .top-strip {
+    padding: 6px 0;
+  }
+  
+  .headerWrapper .top-strip p {
+    font-size: 10px;
+  }
+  
+  .headerWrapper .header {
+    padding: 5px 0;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  /* Mobile Header Layout */
+  .logoWrapper {
+    flex: 0 0 auto;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .logoWrapper img {
+    width: 70%;
+    max-width: 100px;
+  }
+  
+  /* Mobile Part 2 - Full Width */
+  .headerWrapper .header .part2 {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+    order: 2;
+  }
+  
+  .countryDrop {
+    width: 100% !important;
+    min-height: 40px;
+    padding: 5px 10px !important;
+    justify-content: space-between !important;
+  }
+  
+  .countryDrop .label {
+    font-size: 8px;
+  }
+  
+  .countryDrop .name {
+    font-size: 11px;
+  }
+  
+  .countryDrop .ml-auto svg {
+    font-size: 14px;
+  }
+  
+  .headerWrapper .header .headerSearch {
+    width: 100%;
+    height: 40px;
+    padding: 6px;
+    gap: 8px;
+  }
+  
+  .headerWrapper .header .headerSearch input {
+    font-size: 12px;
+    padding: 0 8px !important;
+    height: 30px;
+  }
+  
+  .headerWrapper .header .headerSearch button {
+    min-width: 30px !important;
+    height: 30px !important;
+    width: 30px !important;
+  }
+  
+  .headerWrapper .header .headerSearch button svg {
+    font-size: 16px;
+  }
+  
+  /* Mobile Part 3 */
+  .headerWrapper .header .part3 {
+    width: 100%;
+    justify-content: center;
+    order: 3;
+    margin-top: 10px;
+  }
+  
+  .headerWrapper .header .part3 button {
+    min-width: 38px !important;
+    height: 38px !important;
+    width: 38px !important;
+    border-radius: 10px !important;
+  }
+  
+  .headerWrapper .header .part3 button svg {
+    font-size: 16px;
+  }
+  
+  .part3 {
+    gap: 8px;
+  }
+  
+  .cartBtn {
+    font-size: 16px;
+    padding: 6px;
+  }
+  
+  .cartBtn .cart-count {
+    font-size: 10px;
+    padding: 3px 6px;
+    min-width: 18px;
+  }
+  
+  /* Mobile Navigation */
+  nav .allCartTab {
+    padding: 5px 8px !important;
+    border-radius: 25px !important;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  nav .allCartTab .text {
+    font-size: 11px;
+  }
+  
+  nav .allCartTab .icon1 svg {
+    font-size: 16px !important;
+  }
+  
+  nav .allCartTab .icon2 svg {
+    font-size: 12px !important;
+  }
+  
+  .navPart2 {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 0;
+  }
+  
+  .navPart2 .list {
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .navPart2 .list-inline-items {
+    flex: 0 0 auto;
+  }
+  
+  .navPart2 .list-inline-items a button {
+    font-size: 13px;
+    padding: 2px 4px;
+    gap: 4px;
+  }
+  
+  .navPart2 .list-inline-items .nav-icon {
+    font-size: 13px;
+    margin-right: 4px;
+  }
+  
+  /* Mobile Sidebar Navigation */
+  nav .navPart1 .catWrapper .sidebarNav {
+    width: 100%;
+  }
+  
+  nav .navPart1 .catWrapper .sidebarNav.open {
+    max-height: 300px;
+  }
+  
+  nav .navPart1 .catWrapper .sidebarNav ul li {
+    padding: 3px 10px;
+  }
+  
+  nav .navPart1 .catWrapper .sidebarNav ul li button {
+    padding: 6px 0;
+    font-size: 13px;
+  }
+  
+  nav .navPart1 .catWrapper .sidebarNav ul li .submenu {
+    position: static;
+    border: none;
+    box-shadow: none;
+    margin-left: 15px;
+  }
+  
+  .submenu {
+    min-width: 150px;
+  }
+  
+  .submenu a {
+    padding: 8px 15px;
+    font-size: 13px;
+  }
+  
+  /* Mobile Slider */
+  .slider-container {
+    padding: 10px 0;
+  }
+  
+  .slider-image {
+    height: 200px;
+    border-radius: 6px;
+  }
+  
+  /* Mobile Products */
+  .homeProducts {
+    padding: 15px 0;
+  }
+  
+  .productRow .hd {
+    font-size: 18px;
+  }
+  
+  .viewallbtn {
+    padding: 3px 10px !important;
+    font-size: 11px;
+    border-radius: 20px !important;
+  }
+  
+  .item.productItem {
+    padding: 8px;
+  }
+  
+  /* Mobile Dropdown Menu */
+  .user-dropdown-menu {
+    min-width: 160px !important;
+    max-width: 200px !important;
+    border-radius: 10px;
+  }
+  
+  .user-dropdown-menu a,
+  .user-dropdown-menu button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  /* Mobile Location Modal */
+  .LocationModel .MuiPaper-elevation {
+    padding: 20px;
+    border-radius: 12px;
+    max-width: calc(100% - 20px);
+    margin: 10px;
+  }
+  
+  .LocationModel .countryList {
+    max-height: 250px;
+  }
+  
+  .LocationModel .countryList li button {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+  
+  .LocationModel .close_ {
+    top: 15px;
+    right: 15px;
+    max-width: 35px !important;
+    width: 35px !important;
+    height: 35px !important;
+  }
+  
+  .LocationModel .close_ svg {
+    font-size: 20px;
+  }
+  
+  /* Mobile sparkle effect */
+  .sparkle::after {
+    font-size: 1.2rem;
+    top: -8px;
+    right: -8px;
+  }
+}
+
+/* Extra Small Mobile (320px - 374px) */
+@media (max-width: 374px) {
+  .container {
+    padding: 0 8px;
+  }
+  
+  .bg-purple {
+    font-size: 8px;
+    padding: 5px 3px;
+  }
+  
+  .logoWrapper img {
+    width: 80%;
+    max-width: 90px;
+  }
+  
+  .countryDrop {
+    min-height: 38px;
+    padding: 4px 8px !important;
+  }
+  
+  .countryDrop .label {
+    font-size: 7px;
+  }
+  
+  .countryDrop .name {
+    font-size: 10px;
+  }
+  
+  .headerWrapper .header .headerSearch {
+    height: 38px;
+  }
+  
+  .headerWrapper .header .headerSearch input {
+    font-size: 11px;
+  }
+  
+  .headerWrapper .header .part3 button {
+    min-width: 35px !important;
+    height: 35px !important;
+    width: 35px !important;
+  }
+  
+  .navPart2 .list-inline-items a button {
+    font-size: 12px;
+    padding: 2px 3px;
+  }
+  
+  nav .allCartTab .text {
+    font-size: 10px;
+  }
+  
+  .slider-image {
+    height: 180px;
+  }
+  
+  .productRow .hd {
+    font-size: 16px;
+  }
+  
+  .viewallbtn {
+    padding: 3px 8px !important;
+    font-size: 10px;
+  }
+}
+
+/* Landscape Mode Adjustments for Small Devices */
+@media (max-height: 500px) and (orientation: landscape) {
+  .headerWrapper .header {
+    padding: 3px 0;
+  }
+  
+  .logoWrapper img {
+    max-width: 80px;
+  }
+  
+  .countryDrop {
+    min-height: 35px;
+  }
+  
+  .headerWrapper .header .headerSearch {
+    height: 35px;
+  }
+  
+  .slider-image {
+    height: 150px;
+  }
+  
+  nav .navPart1 .catWrapper .sidebarNav.open {
+    max-height: 200px;
+  }
+}
+@media print {
+  body {
+    background-color: white;
+  }
+  
+  .btn,
+  .no-print {
+    display: none !important;
+  }
+  
+  .card {
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .table {
+    width: 100% !important;
+    margin-bottom: 1rem;
+    page-break-inside: auto;
+  }
+  
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+  
+  .table td,
+  .table th {
+    background-color: white !important;
+  }
 }

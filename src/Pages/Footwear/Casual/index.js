@@ -1,51 +1,69 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Rating from "@mui/material/Rating";
-
+import { FaCheck } from "react-icons/fa";
+import { useCart } from "../../../context/CartContext"; 
 
 const products = [
   {
-    id: 1,
+    id: 31, // ⚠️ CHANGED from 1
     name: "Canvas Sneakers",
     price: 34.99,
-    img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80", // ⚠️ Also change 'img' to 'image'
     rating: 4.6,
+    category: "Men's Footwear", // ⚠️ ADD this line
     description: "Classic canvas sneakers for everyday comfort."
   },
   {
-    id: 2,
+    id: 32, // ⚠️ CHANGED from 2
     name: "Slip-On Shoes",
     price: 29.99,
-    img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80", // ⚠️ Change to 'image'
     rating: 4.4,
+    category: "Men's Footwear", // ⚠️ ADD this line
     description: "Easy slip-on shoes for casual outings."
   },
   {
-    id: 3,
+    id: 33, // ⚠️ CHANGED from 3
     name: "Loafers",
     price: 39.99,
-    img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80", // ⚠️ Change to 'image'
     rating: 4.5,
+    category: "Men's Footwear", // ⚠️ ADD this line
     description: "Stylish loafers for work and play."
   },
   {
-    id: 4,
+    id: 34, // ⚠️ CHANGED from 4
     name: "Boat Shoes",
     price: 44.99,
-    img: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80", // ⚠️ Change to 'image'
     rating: 4.3,
+    category: "Men's Footwear", // ⚠️ ADD this line
     description: "Comfortable boat shoes for summer."
   }
 ];
 
 const CasualFootwear = () => {
-  const [cart, setCart] = useState([]);
+  const { addToCart } = useCart(); // ⚠️ ADDED: Use CartContext
   const [modalProduct, setModalProduct] = useState(null);
+  const [addedToCart, setAddedToCart] = useState({}); // ⚠️ ADDED: Visual feedback state
 
-  const handleAddToCart = (product) => {
-    setCart([...cart, product]);
-    alert(`${product.name} added to cart!`);
+const handleAddToCart = (product) => {
+    try {
+      addToCart(product);
+      
+      // Show visual feedback
+      setAddedToCart(prev => ({ ...prev, [product.id]: true }));
+      setTimeout(() => {
+        setAddedToCart(prev => ({ ...prev, [product.id]: false }));
+      }, 2000);
+      
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      alert('Failed to add item to cart');
+    }
   };
+  
 
   return (
     <div className="container py-5" style={{ maxWidth: 1200 }}>
@@ -58,8 +76,8 @@ const CasualFootwear = () => {
             <h6 style={{ fontWeight: 600, margin: "8px 0 4px 0" }}>{product.name}</h6>
             <Rating value={product.rating} precision={0.1} readOnly size="small" style={{ marginBottom: 6 }} />
             <div style={{ fontWeight: 500, color: "#1976d2", marginBottom: 8 }}>${product.price.toFixed(2)}</div>
-            <Button variant="contained" color="primary" size="small" style={{ marginBottom: 6 }} onClick={() => handleAddToCart(product)}>
-              Add to Cart
+            <Button variant="contained" color={addedToCart[product.id] ? "success" : "primary"} size="small" style={{ marginBottom: 6 }} onClick={() => handleAddToCart(product)} startIcon={addedToCart[product.id]?<FaCheck/>:null}>
+              {addedToCart[product.id] ? "Added!" : "Add to Cart"}
             </Button>
             <Button variant="outlined" size="small" onClick={() => setModalProduct(product)}>
               Quick View
@@ -77,8 +95,8 @@ const CasualFootwear = () => {
             <Rating value={modalProduct.rating} precision={0.1} readOnly size="medium" style={{ marginBottom: 8 }} />
             <div style={{ fontWeight: 500, color: "#1976d2", marginBottom: 8 }}>${modalProduct.price.toFixed(2)}</div>
             <p style={{ color: "#555" }}>{modalProduct.description}</p>
-            <Button variant="contained" color="primary" fullWidth onClick={() => { handleAddToCart(modalProduct); setModalProduct(null); }}>
-              Add to Cart
+            <Button variant="contained" color={addedToCart[modalProduct.id] ? "success" : "primary"} fullWidth onClick={() => { handleAddToCart(modalProduct); setModalProduct(null); }} startIcon={addedToCart[modalProduct.id] ? <FaCheck /> : null}>
+              {addedToCart[modalProduct.id] ? "Added to Cart!" : "Add to Cart"}
             </Button>
             <Button variant="text" fullWidth style={{ marginTop: 8 }} onClick={() => setModalProduct(null)}>
               Close

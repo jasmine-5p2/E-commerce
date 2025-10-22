@@ -8,7 +8,23 @@ const products = [
     id: 1,
     name: "Heeled Sandals",
     price: 44.99,
-    img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80",
+    img: "https://sp.yimg.com/ib/th?id=OPAC.6q7OscdqDKrsKw474C474&o=5&pid=21.1&w=160&h=105",
+    rating: 4.7,
+    description: "Elegant heeled sandals for parties and events."
+  },
+   {
+    id: 3,
+    name: "Heeled Sandals",
+    price: 44.99,
+    img: "https://media.landmarkshops.in/cdn-cgi/image/h=831,w=615,q=85,fit=cover/max-new/1000015340161-OffWhite-IVORY-1000015340161_01-2100.jpg",
+    rating: 4.7,
+    description: "Elegant heeled sandals for parties and events."
+  },
+   {
+    id: 4,
+    name: "Heeled Sandals",
+    price: 44.99,
+    img: "https://tse1.mm.bing.net/th/id/OIP.h8386G2jDiQidiNwn3wDlgHaHa?pid=Api&P=0&h=180",
     rating: 4.7,
     description: "Elegant heeled sandals for parties and events."
   },
@@ -16,23 +32,41 @@ const products = [
     id: 2,
     name: "Sneakers",
     price: 39.99,
-    img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
+    img: "https://sp.yimg.com/ib/th?id=OPAC.hgvYV%2fxJDIM%2bIQ474C474&o=5&pid=21.1&w=160&h=105",
     rating: 4.5,
     description: "Trendy sneakers for everyday comfort."
   },
   {
-    id: 3,
+    id: 7,
     name: "Ballet Flats",
     price: 29.99,
-    img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80",
+    img: "https://sp.yimg.com/ib/th?id=OPAC.zllxMQ%2f9LD0mKA474C474&o=5&pid=21.1&w=160&h=105",
+
     rating: 4.6,
     description: "Classic ballet flats for work and casual wear."
   },
   {
-    id: 4,
+    id: 9,
     name: "Boots",
     price: 59.99,
-    img: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80",
+    img: "https://sp.yimg.com/ib/th?id=OPAC.nXMceGbprhMWrQ474C474&o=5&pid=21.1&w=160&h=105",
+    rating: 4.3,
+    description: "Stylish boots for winter and fall."
+  },
+   {
+    id: 7,
+    name: "Ballet Flats",
+    price: 29.99,
+    img: "https://sp.yimg.com/ib/th?id=OPAC.zllxMQ%2f9LD0mKA474C474&o=5&pid=21.1&w=160&h=105",
+
+    rating: 4.6,
+    description: "Classic ballet flats for work and casual wear."
+  },
+  {
+    id: 8,
+    name: "Boots",
+    price: 59.99,
+    img: "https://sp.yimg.com/ib/th?id=OPAC.nXMceGbprhMWrQ474C474&o=5&pid=21.1&w=160&h=105",
     rating: 4.3,
     description: "Stylish boots for winter and fall."
   }

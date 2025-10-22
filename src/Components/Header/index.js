@@ -9,14 +9,16 @@ import { FaUser, FaShoppingCart } from "react-icons/fa";
 import SearchBox from './SearchBox';
 import { MyContext } from '../../App';
 import { useContext, useState, useRef, useEffect } from 'react';
+import { useCart } from '../../context/CartContext';
 
 const Header = () => {
-    const cartCount = 5; // Example static count; make this dynamic based on your logic
     const context = useContext(MyContext);
+    const { getTotalItems } = useCart();
 
     const [showUserDropdown, setShowUserDropdown] = useState(false);
     const userDropdownRef = useRef(null);
 
+    // Click outside handler for user dropdown
     useEffect(() => {
         function handleClickOutside(event) {
             if (userDropdownRef.current && !userDropdownRef.current.contains(event.target)) {
@@ -76,12 +78,14 @@ const Header = () => {
                                                 </Link>
                                             </div>
                                         )}
-                                        <Button className="cartBtn ml-3">
-                                            <FaShoppingCart />
-                                            {cartCount > 0 && (
-                                                <span className="cart-count">{cartCount}</span>
-                                            )}
-                                        </Button>
+                                        <Link to="/cart" style={{ textDecoration: "none" }}>
+                                            <Button className="cartBtn ml-3" style={{ position: "relative" }}>
+                                                <FaShoppingCart />
+                                                {getTotalItems() > 0 && (
+                                                    <span className="cart-count">{getTotalItems()}</span>
+                                                )}
+                                            </Button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

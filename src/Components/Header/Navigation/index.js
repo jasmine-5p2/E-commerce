@@ -3,7 +3,11 @@ import { IoIosMenu } from "react-icons/io";
 import { FaAngleDown } from "react-icons/fa6";
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import { FaHome, FaStore, FaMobileAlt, FaTshirt, FaTags, FaUser } from "react-icons/fa";
+import { FaHome} from "react-icons/fa";
+import { GiDress } from "react-icons/gi";
+import { RiShirtFill } from "react-icons/ri";
+import { VscWatch } from "react-icons/vsc";
+import { GiRunningShoe } from "react-icons/gi";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 
 const Navigation = () => {
@@ -68,7 +72,7 @@ const Navigation = () => {
               </li>
 
               <li className="list-inline-items nav-item">
-                <Link to="/mens"><FaStore className="nav-icon" /> <Button>Men’s</Button></Link>
+                <Link to="/mens"><RiShirtFill className="nav-icon" /> <Button>Men’s</Button></Link>
                 <div className='submenu'>
                   <Link to="/mens/clothing"><Button>Clothing</Button></Link>
                   <Link to="/mens/footwear"><Button>Footwear</Button></Link>
@@ -77,7 +81,7 @@ const Navigation = () => {
               </li>
 
               <li className="list-inline-items nav-item">
-                <Link to="/womens"><FaMobileAlt className="nav-icon" /> <Button>Women's</Button></Link>
+                <Link to="/womens"><GiDress className="nav-icon" /> <Button>Women's</Button></Link>
                 <div className='submenu'>
                   <Link to="/womens/clothing"><Button>Clothing</Button></Link>
                   <Link to="/womens/footwear"><Button>Footwear</Button></Link>
@@ -86,7 +90,7 @@ const Navigation = () => {
               </li>
 
               <li className="list-inline-items nav-item">
-                <Link to="/watches"><FaTshirt className="nav-icon" /> <Button>Watches</Button></Link>
+                <Link to="/watches"><VscWatch className="nav-icon" /> <Button>Watches</Button></Link>
                 <div className='submenu'>
                   <Link to="/watches/analog"><Button>Analog</Button></Link>
                   <Link to="/watches/digital"><Button>Digital</Button></Link>
@@ -95,13 +99,18 @@ const Navigation = () => {
               </li>
 
               <li className="list-inline-items nav-item">
-                <Link to="/footwear"><FaTags className="nav-icon" /> <Button>Footwear</Button></Link>
-                <div className='submenu'>
-                  <Link to="/footwear/sports"><Button>Sports</Button></Link>
-                  <Link to="/footwear/casual"><Button>Casual</Button></Link>
-                  <Link to="/footwear/formal"><Button>Formal</Button></Link>
-                </div>
-              </li>
+    <div className="nav-link-container" onClick={(e) => e.preventDefault()}>
+        <Link to="/footwear">
+            <GiRunningShoe className="nav-icon" /> 
+            <Button>Footwear</Button>
+        </Link>
+        <div className='submenu'>
+            <Link to="/footwear/sports"><Button>Sports</Button></Link>
+            <Link to="/footwear/casual"><Button>Casual</Button></Link>
+            <Link to="/footwear/formal"><Button>Formal</Button></Link>
+        </div>
+    </div>
+</li>
             </ul>
           </div>
         </div>

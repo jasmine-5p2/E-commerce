@@ -23,6 +23,9 @@ import Digital from './Pages/Watches/Digital';
 import Smart from './Pages/Watches/Smart';
 import axios from 'axios';
 import Footer from "./Components/Footer";
+import Receipt from './Pages/Receipt';
+
+
 const MyContext = createContext();
 
 function App() {
@@ -68,9 +71,11 @@ function App() {
           <Route path="/womens/clothing" element={<WomensClothing />} />
           <Route path="/womens/footwear" element={<WomensFootwear />} />
           <Route path="/womens/accessories" element={<WomensAccessories />} />
+          <Route path="/receipt" element={<Receipt />} />
           <Route path="/footwear/sports" element={<SportsFootwear />} />
           <Route path="/footwear/casual" element={<CasualFootwear />} />
           <Route path="/footwear/formal" element={<FormalFootwear />} />
+
         </Routes>
         {/* Add Footer below all content */}
         <Footer />
@@ -78,6 +83,7 @@ function App() {
     </BrowserRouter>
   );
 }
+
 
 export default App;
 export {MyContext}
